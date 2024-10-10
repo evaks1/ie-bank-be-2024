@@ -1,19 +1,20 @@
 from dotenv import load_dotenv
 import os
-
 load_dotenv()
 
 class Config(object):
-    SECRET_KEY = 'this-really-needs-to-be-changed'
+    SECRET_KEY = 'elsv'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class LocalConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///local.db'
     DEBUG = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class GithubCIConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
     DEBUG = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql://{dbuser}:{dbpass}@{dbhost}/{dbname}'.format(
@@ -23,3 +24,7 @@ class DevelopmentConfig(Config):
     dbname=os.getenv('DBNAME')
     )
     DEBUG = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+class ProductionConfig:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///prod.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
