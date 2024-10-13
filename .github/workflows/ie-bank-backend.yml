@@ -97,6 +97,6 @@ jobs:
       uses: azure/webapps-deploy@v3
       id: deploy-to-webapp
       with:
-        app-name: ${{ env.BACKEND_WEBAPP_DEV }}
+        app-name: ${{ env.BACKEND_WEBAPP_UAT }}
         package: .
     
